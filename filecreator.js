@@ -1,20 +1,13 @@
 const fs = require('fs');
 
-exports.makefile = (name) => {
+exports.makefile = (name) => (callback) => {
   const filename = name + '.txt';
-  fs.writeFile(name, '', function(err) {
-    if (err) {
-      return console.log('makefile error : ', err);
-    }
-    console.log('created file : ', name);
-  })
+  setTimeout(() => {
+    fs.writeFile(filename, '', callback);
+  }, 1000);
 }
 
-exports.addlign = (name, text) => {
+exports.addlign = (name, text) => (callback) => {
   const filename = name + '.txt';
-  fs.appendFile(filename, text, function(err) {
-    if (err) {
-      return console.log('addlign error : ', err);
-    }
-  })
+  fs.appendFile(filename, text, callback);
 }
